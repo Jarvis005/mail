@@ -27,6 +27,7 @@ public class MailService {
 	
 	public void sayHello () {
 		System.out.println("Hello World");
+		
 		logger.info("Hello World");
 	}
 	
