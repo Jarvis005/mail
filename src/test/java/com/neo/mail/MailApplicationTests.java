@@ -17,6 +17,8 @@ public class MailApplicationTests {
 	public void contextLoads() {
 //		testService.testArrayStack();
 		testService.testPriortyQueue();
+		
+		
 	}
 
 }
