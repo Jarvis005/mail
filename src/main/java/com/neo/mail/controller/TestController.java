@@ -1,7 +1,7 @@
 package com.neo.mail.controller;
 
 
-import com.neo.mail.bean.ResultBean;
+import com.neo.mail.bean.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@GetMapping("/get1")
-	public ResultBean get1() {
+	public JsonResult get1() {
 		logger.info("get1");
-		return new ResultBean("get1 ok");
+		return JsonResult.createSuccessJsonResult("get1 ok");
 	}
 	
 	/**

@@ -1,0 +1,22 @@
+.left {
+    width: 150px;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    height: 100%;
+    background-color: cornflowerblue;
+}
+.left a {
+    text-decoration: none;
+    color: #fff;
+}
+.left a:hover {
+    text-decoration: underline;
+}
+.left div {
+    padding: 10px;
+}
+.mail-top {
+    border-bottom: cyan solid 1px;
+}
+

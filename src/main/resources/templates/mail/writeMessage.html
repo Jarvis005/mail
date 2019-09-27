@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>写信</title>
+    <link th:href="@{/css/common.css}" rel="stylesheet"/>
+    <link th:href="@{/css/top.css}" rel="stylesheet"/>
+    <link th:href="@{/css/left.css}" rel="stylesheet"/>
+    <div th:include="top::top"></div>
+    <div th:include="left::left"></div>
+    <style>
+        .message {
+            position: absolute;
+            top: 50px;
+            left: 150px;
+            padding: 10px;
+            width: 85%;
+            height: 85%;
+        }
+        .receiveUser {
+            position: relative;
+            margin: 20px 10px;
+            width: 100%;
+        }
+        .target {
+            position: relative;
+            margin: 20px 10px;
+            width: 100%;
+        }
+        .content {
+            position: relative;
+            margin: 10px 10px;
+            width: 100%;
+        }
+        .sendUser {
+            position: relative;
+            margin: 20px 10px;
+            width: 100%;
+        }
+        .send {
+            position: relative;
+            margin: 20px 10px;
+            width: 100%;
+        }
+        .message label {
+            display: inline-block;
+            width: 10%;
+        }
+        .message input, textarea {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <div class="receiveUser">
+            <label>收件人</label>
+            <input id="user" value="" />
+        </div>
+        <div class="target">
+            <label>主题</label>
+            <input id="target" value="" />
+            <!--<img th:src="@{/img/upload.png}">-->
+            <!--<span class="upload">-->
+                <!--<     id="form" enctype="multipart/form-data">-->
+                    <!--<input type="text" id="name" name="name">-->
+                    <!--<input type="button" onclick="upload()" value="添加附件" />-->
+                <!--</form>-->
+            <!--</span>-->
+        </div>
+        <div class="content">
+            <label>正文</label>
+            <textarea id="msgContent" rows="10" ></textarea>
+        </div>
+        <div class="sendUser">
+            <label>发件人:</label>
+            <span>Jarvis<1596918023@qq.com></span>
+        </div>
+        <div class="send">
+            <button id="sendMsg" type="button">发送</button>
+        </div>
+    </div>
+<script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script>
+    $("#sendMsg").on('click', function () {
+        var receiveUser = $("#user").val();
+        var target = $("#target").val();
+        var msgContent = $("#msgContent").val();
+        if (receiveUser === '' || receiveUser.trim() === '') {
+            alert("请输入收件人");
+            return false;
+        }
+        if (target === '' || target.trim() === '') {
+            alert("请输入主题");
+            return false;
+        }
+        if (msgContent === '' || msgContent.trim() === '') {
+            alert("请输入正文");
+            return false;
+        }
+        var params = {
+            receiveUser: receiveUser.trim(),
+            target: target.trim(),
+            msgContent: msgContent.trim()
+        }
+        $.ajax({
+            url: '/mail/sendMsg',
+            data: JSON.stringify(params),
+            dataType: 'json',
+            type: 'post',
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                console.log(JSON.stringify(res))
+            },
+            error: function (err) {
+                console.log(JSON.stringify(err))
+            }
+        })
+    })
+
+    // function upload(){
+    //     var form = new FormData(document.getElementById("form"));
+    //     $.ajax({
+    //         url: "/mail/upload",
+    //         type: "post",
+    //         data: form,
+    //         cache: false,
+    //         processData: false,
+    //         contentType: false,
+    //         success:function(data){
+    //             alert("操作成功！");
+    //         },
+    //         error:function(e){
+    //             alert("网络错误，请重试！！");
+    //         }
+    //     });
+    // }
+
+</script>
+</body>
+</html>

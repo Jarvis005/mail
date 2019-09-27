@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>左边栏</title>
+</head>
+<body th:fragment="left">
+    <div class="left">
+        <div class="mail-top">
+            <div class="write">
+                <a href="#">
+                    <img th:src="@{/img/write.png}">
+                    写信
+                </a>
+            </div>
+            <div class="receive">
+                <a href="#">
+                    <img th:src="@{/img/receive.png}">
+                    收信
+                </a>
+            </div>
+            <div class="address-book">
+                <a href="#">
+                    <img th:src="@{/img/addressBook.png}">
+                    通讯录
+                </a>
+            </div>
+        </div>
+        <div class="mail-bottom">
+            <div class="inbox">
+                <a href="#">
+                    收件箱
+                </a>
+            </div>
+            <div class="send-box">
+                <a href="#">
+                    发件箱
+                </a>
+            </div>
+            <div class="rubbish-box">
+                <a href="#">
+                    垃圾箱
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

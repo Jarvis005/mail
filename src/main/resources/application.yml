@@ -1,0 +1,46 @@
+server:
+  port: 8097
+  profiles:
+    active: test
+  application:
+    name: mail-api-service
+
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    servlet:
+      content-type: text/html
+  devtools:
+    restart:
+      enabled: true
+  freemarker:
+    cache: false
+  mvc:
+    view:
+      prefix: /resources/templates/
+      suffix: .html
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mail?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: root
+    password:
+  mail:
+    default-encoding: utf-8
+    host: stmp.qq.com
+    username: 1596918023@qq.com
+    password: bqbdpfpoqfpsgfjd
+mybatis:
+  type-aliases-package: com.neo.mail.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    lazy-loading-enabled: false
+    aggressive-lazy-loading: true
+    multiple-result-sets-enabled: true
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    use-column-label: true
+    use-generated-keys: false
+    default-executor-type: simple
+    default-statement-timeout: 25000
+    call-setters-on-nulls: true

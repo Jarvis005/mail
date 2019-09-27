@@ -1,0 +1,38 @@
+.top {
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    background-color: cornflowerblue;
+}
+.top a {
+    text-decoration: none;
+    color: #fff;
+}
+.top a:hover {
+    text-decoration: underline;
+}
+.top-left {
+    position: absolute;
+    display: inline-block;
+    float: left;
+    padding: 10px 10px;
+    left: 0;
+}
+.top-right {
+    position: absolute;
+    display: inline-block;
+    float: right;
+    padding: 10px 10px;
+    text-align: center;
+    right: 0;
+}
+.userCenter, .logout {
+    display: inline-block;
+    margin-right: 20px;
+    width: 80px;
+    height: 50px;
+    line-height: 15px;
+    text-align: center;
+}

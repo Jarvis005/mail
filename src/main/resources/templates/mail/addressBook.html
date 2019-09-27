@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>通讯录</title>
+    <link th:href="@{/css/common.css}" rel="stylesheet"/>
+    <link th:href="@{/css/top.css}" rel="stylesheet"/>
+    <link th:href="@{/css/left.css}" rel="stylesheet"/>
+    <div th:include="top::top"></div>
+    <div th:include="left::left"></div>
+    <style>
+        .book {
+            position: absolute;
+            top: 50px;
+            left: 150px;
+            padding: 10px;
+            width: 85%;
+            height: 85%;
+        }
+        .address-book-header>.header-search {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 30px;
+        }
+        .address-book-header>.header-delete {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            height: 30px;
+        }
+        .address-book-list {
+            position: relative;
+            top: 30px;
+            margin: 10px 10px;
+            width: 100%;
+            height: 100%;
+        }
+        .table-header {
+            background-color: gainsboro;
+        }
+        .table-header span {
+            display: inline-block;
+            margin-left: 20px;
+            width: 40%;
+        }
+        .table-body span {
+            display: inline-block;
+            margin-left: 20px;
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="address-book-header">
+            <div class="header-delete">
+                <input type="button" id="deleteUsers" value="删除">
+            </div>
+            <div class="header-search">
+                <input type="text" placeholder="搜素全部联系人" id="receiveUser"/>
+                <img th:src="@{/img/search.png}"/>
+            </div>
+        </div>
+        <div class="address-book-list">
+            <div class="table-header">
+                <input id="checkAll" type="checkbox" />
+                <span>姓名</span>
+                <span>邮箱</span>
+            </div>
+            <div class="table-body">
+                <p th:each="user:${userList}">
+                    <input th:value="${user.id}" type="checkbox" />
+                    <span th:text="${user.username}"></span>
+                    <span th:text="${user.username}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script>
+    $("#checkAll").on('click', function () {
+        var flag = $("#checkAll").is(":checked");
+        if (flag) {
+            $(".table-body input").prop("checked", true);
+        } else {
+            $(".table-body input").prop("checked", false);
+        }
+    })
+    $("#deleteUsers").on('click', function () {
+        debugger
+        var data = $(".table-body input:checkbox:checked");
+        if (data.length <= 0) {
+            alert("请选择需要删除的通讯录")
+            return;
+        }
+        console.log(JSON.stringify(data))
+        data.each(function () {
+            var id = $(this).val();
+            console.log(id)
+            $.ajax({
+                url: '/mail/delete?id='+ id,
+                type: 'get',
+                success: function (res) {
+                    alert(res.msg)
+                },
+                error: function (err) {
+                    console.log(JSON.stringify(err))
+                }
+            })
+        })
+        window.location.reload()
+    })
+</script>
+</body>
+</html>
