@@ -80,4 +80,5 @@ public class MailUser implements Serializable {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
+	
 }
